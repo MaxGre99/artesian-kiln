@@ -1,26 +1,83 @@
-@import "tailwindcss";
+@config "../tailwind.config.ts";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer utilities {
+	.font-oswald {
+		font-family: var(--font-oswald);
+	}
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer base {
+	h1 {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+		font-weight: 700;
+	}
+
+	h2 {
+		font-size: 1.875rem;
+		line-height: 2.25rem;
+		font-weight: 600;
+	}
+
+	h3 {
+		font-size: 1.5rem;
+		line-height: 2rem;
+		font-weight: 600;
+	}
+
+	html {
+		font-family: var(--font-oswald), sans-serif;
+		background-color: #f5f0e8;
+		color: #2c2416;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	body {
+		min-height: 100svh;
+		background-color: #f5f0e8;
+	}
+
+	html::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+
+	html::-webkit-scrollbar-track {
+		background: #f5f0e8; /* цвет трека глобального */
+	}
+
+	html::-webkit-scrollbar-thumb {
+		background: #45547b;
+		border-radius: 999px;
+	}
+
+	/* Внутренние scrollbar’ы всех элементов кроме html */
+	body *::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+
+	body *::-webkit-scrollbar-track {
+		background: transparent;
+		margin: 8px 8px 0px 8px;
+	}
+
+	body *::-webkit-scrollbar-thumb {
+		background: #45547b !important;
+		border-radius: 999px;
+		border: 3px solid transparent;
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+button,
+a,
+input,
+select,
+textarea {
+	transition-property:
+		color, background-color, border-color, box-shadow, transform, opacity;
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
 }
